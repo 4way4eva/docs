@@ -9,7 +9,7 @@ import type {
   ESoilLot,
   LedgerEntry,
   Quadrant,
-  RecipocalYieldCurve,
+  ReciprocalYieldCurve,
   SectorTicker,
   TachometerState,
   Transaction,
@@ -20,6 +20,42 @@ import type {
 import rainYieldData from '../data/rain-yield.json'
 import ppppiLayersData from '../data/ppppi-layers.json'
 import quadrantsData from '../data/quadrants.json'
+
+/**
+ * Simple seeded random number generator for deterministic behavior
+ * Uses mulberry32 algorithm
+ */
+class SeededRandom {
+  private seed: number
+
+  constructor(seed: number) {
+    this.seed = seed
+  }
+
+  next(): number {
+    let t = (this.seed += 0x6d2b79f5)
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
+// Global seeded random instance (can be re-seeded for tests)
+let seededRandom: SeededRandom | null = null
+
+/**
+ * Set seed for deterministic random generation (useful for testing)
+ */
+export function setRandomSeed(seed: number): void {
+  seededRandom = new SeededRandom(seed)
+}
+
+/**
+ * Get random number (uses seeded random if available, otherwise Math.random)
+ */
+function getRandom(): number {
+  return seededRandom ? seededRandom.next() : Math.random()
+}
 
 /**
  * Calculate RPM from tachometer axes
@@ -43,7 +79,7 @@ export function calculatePhiBoost(
 /**
  * Get reciprocal yield curve for dynamic pricing
  */
-export function getRecipocalYieldCurve(): RecipocalYieldCurve[] {
+export function getReciprocalYieldCurve(): ReciprocalYieldCurve[] {
   return rainYieldData.reciprocalYieldCurve.map((entry) => ({
     timeFraction: entry.timeFraction,
     decibelYield: entry.decibelYield,
@@ -55,7 +91,7 @@ export function getRecipocalYieldCurve(): RecipocalYieldCurve[] {
  * Calculate coin value based on time fraction
  */
 export function calculateCoinValue(timeFraction: number): number {
-  const curve = getRecipocalYieldCurve()
+  const curve = getReciprocalYieldCurve()
   // Find closest match or interpolate
   for (let i = 0; i < curve.length - 1; i++) {
     if (timeFraction <= curve[i].timeFraction) {
@@ -93,8 +129,8 @@ export function getSectorTickers(): SectorTicker[] {
   return ppppiLayersData.sectors.map((sector) => ({
     sector: sector.id as EconomicSector,
     ritualLaw: sector.ritualLaw,
-    currentPrice: sector.baseValue * (1 + (Math.random() - 0.5) * sector.volatility),
-    volume: Math.floor(Math.random() * 10000),
+    currentPrice: sector.baseValue * (1 + (getRandom() - 0.5) * sector.volatility),
+    volume: Math.floor(getRandom() * 10000),
     lastUpdate: Date.now(),
   }))
 }
@@ -113,7 +149,7 @@ export function createTransaction(
   const reciprocalYield = calculateCoinValue(timeFraction)
 
   return {
-    id: `TX-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    id: `TX-${Date.now()}-${getRandom().toString(36).substring(2, 11)}`,
     timestamp: Date.now(),
     type,
     sector,
@@ -140,7 +176,7 @@ export function createLedgerEntry(
   const priceSignal = calculateCoinValue(1 / (tachometerState.rpm / 100 + 0.01))
 
   return {
-    id: `LE-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    id: `LE-${Date.now()}-${getRandom().toString(36).substring(2, 11)}`,
     timestamp: Date.now(),
     tachometerState,
     yieldWindow,
@@ -182,7 +218,7 @@ export function generateDashboardData(
   eSoilLots: ESoilLot[],
 ): DashboardData {
   const activeSectors = getSectorTickers()
-  const yieldCurve = getRecipocalYieldCurve()
+  const yieldCurve = getReciprocalYieldCurve()
   const totalYieldUnits = eSoilLots.reduce((sum, lot) => sum + lot.yieldUnits, 0)
 
   return {

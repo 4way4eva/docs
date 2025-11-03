@@ -13,6 +13,7 @@ import {
   exportLedgerToCSV,
   calculateRPM,
   calculatePhiBoost,
+  setRandomSeed,
 } from '../lib/ledger.js'
 import { generateLedgerSchema, exportSchemaToJSON } from '../lib/schema.js'
 import type { TachometerState, EconomicSector } from '../types/index.js'
@@ -24,6 +25,9 @@ import { join } from 'path'
  */
 function generateSampleDashboard() {
   console.log('🔵 Initializing Blue Lock Ledger...\n')
+
+  // Set seed for deterministic generation in dashboard (use timestamp for variety)
+  setRandomSeed(Date.now())
 
   // Initialize the ledger system
   const ledgerState = initializeBlueLockLedger()

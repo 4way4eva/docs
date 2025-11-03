@@ -51,7 +51,7 @@ export interface YieldWindow {
  * Reciprocal yield pricing curve
  * Time fractions vs. decibel yields for dynamic pricing
  */
-export interface RecipocalYieldCurve {
+export interface ReciprocalYieldCurve {
   timeFraction: number
   decibelYield: number
   coinValue: number
@@ -142,7 +142,7 @@ export interface DashboardData {
   currentVowels: VowelWeights
   activeSectors: SectorTicker[]
   recentTransactions: Transaction[]
-  yieldCurve: RecipocalYieldCurve[]
+  yieldCurve: ReciprocalYieldCurve[]
   quarterCheckpoint: number
   totalYieldUnits: number
   activeESoilLots: number
