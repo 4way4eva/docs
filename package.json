@@ -14,6 +14,7 @@
     "add-content-type": "tsx src/content-render/scripts/add-content-type.ts",
     "ai-tools": "tsx src/ai-tools/scripts/ai-tools.ts",
     "all-documents": "tsx src/content-render/scripts/all-documents/cli.ts",
+    "blue-lock-dashboard": "tsx src/blue-lock-ledger/scripts/generate-dashboard.ts",
     "analyze-text": "tsx src/search/scripts/analyze-text.ts",
     "analyze-comment": "tsx src/events/scripts/analyze-comment-cli.ts",
     "build": "next build",

@@ -1,0 +1,58 @@
+{
+  "yieldLaw": {
+    "name": "Rain Yield — Anchor One-Pager",
+    "antiInflationRule": "Only reciprocal yield credits the ledger unless destined for harvest",
+    "reciprocalYieldCredits": true,
+    "harvestDestination": false
+  },
+  "quarterCheckpoints": [
+    {
+      "checkpoint": 225,
+      "quarterLattice": 11,
+      "isHalfYield": false,
+      "description": "First quarter checkpoint"
+    },
+    {
+      "checkpoint": 504,
+      "quarterLattice": 23,
+      "isHalfYield": true,
+      "description": "Half-Yield Window opens"
+    }
+  ],
+  "reciprocalYieldCurve": [
+    {
+      "timeFraction": 0.125,
+      "intervalName": "1/8 cycle",
+      "decibelYield": 18.0,
+      "coinValue": 180,
+      "note": "Shortest interval, highest gain"
+    },
+    {
+      "timeFraction": 0.25,
+      "intervalName": "1/4 cycle",
+      "decibelYield": 12.0,
+      "coinValue": 120,
+      "note": "Quarter cycle standard"
+    },
+    {
+      "timeFraction": 0.5,
+      "intervalName": "1/2 cycle",
+      "decibelYield": 6.0,
+      "coinValue": 60,
+      "note": "Half cycle moderate"
+    },
+    {
+      "timeFraction": 1.0,
+      "intervalName": "Full cycle",
+      "decibelYield": 0.0,
+      "coinValue": 10,
+      "note": "Base value, no boost"
+    }
+  ],
+  "temporalTradingGates": {
+    "gateSchedule": "48-tick Quarter Lattice",
+    "ticksPerQuarter": 12,
+    "totalTicks": 48,
+    "cyclePattern": "Four Regions × 12 Conferences"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Gathering of the Four — Quadrant Structure",
+  "description": "Four Regions × 12 Conferences = 48 total conferences aligned to 48-tick Quarter Lattice",
+  "quadrants": [
+    {
+      "id": 1,
+      "name": "Ember Quadrant",
+      "heroName": "Jetah",
+      "flameCard": {
+        "id": "FC-JETAH-001",
+        "relicType": "FlameCard",
+        "nodeKey": "0xEMBER_SEAL_001",
+        "ledgerAddress": "0x742A89F234C8D1E0",
+        "authority": 100
+      },
+      "conferences": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "dominantSector": "ENERGY",
+      "regionalLaw": "Fire transmutes all value",
+      "eSoilPrefix": "EMB"
+    },
+    {
+      "id": 2,
+      "name": "Tide Quadrant",
+      "heroName": "Aquila",
+      "flameCard": {
+        "id": "FC-AQUILA-002",
+        "relicType": "WaveRelic",
+        "nodeKey": "0xTIDE_FLOW_002",
+        "ledgerAddress": "0xA91B45D876F3C2E9",
+        "authority": 100
+      },
+      "conferences": [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+      "dominantSector": "MEDS",
+      "regionalLaw": "Healing flows through exchange",
+      "eSoilPrefix": "TID"
+    },
+    {
+      "id": 3,
+      "name": "Terra Quadrant",
+      "heroName": "Gaia",
+      "flameCard": {
+        "id": "FC-GAIA-003",
+        "relicType": "EarthSigil",
+        "nodeKey": "0xTERRA_ROOT_003",
+        "ledgerAddress": "0xD23E89A456B1C7F0",
+        "authority": 100
+      },
+      "conferences": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+      "dominantSector": "TRANSPORT",
+      "regionalLaw": "Movement grounds in substance",
+      "eSoilPrefix": "TER"
+    },
+    {
+      "id": 4,
+      "name": "Aether Quadrant",
+      "heroName": "Zephyr",
+      "flameCard": {
+        "id": "FC-ZEPHYR-004",
+        "relicType": "WindToken",
+        "nodeKey": "0xAETHER_WIND_004",
+        "ledgerAddress": "0xF56C12D987A3E4B1",
+        "authority": 100
+      },
+      "conferences": [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48],
+      "dominantSector": "KNOWLEDGE",
+      "regionalLaw": "Wisdom elevates all transactions",
+      "eSoilPrefix": "AET"
+    }
+  ],
+  "conferenceStructure": {
+    "totalConferences": 48,
+    "perQuadrant": 12,
+    "quarterLatticeTicks": 48,
+    "conferenceToTickMapping": "1:1 direct correspondence"
+  },
+  "economicInterplay": {
+    "crossQuadrantTrade": "Enabled with sector affinity bonuses",
+    "regionalDominance": "Each quadrant has preferred sector ticker",
+    "flameCardSync": "Hero relics act as authentication for ledger access"
+  }
+}

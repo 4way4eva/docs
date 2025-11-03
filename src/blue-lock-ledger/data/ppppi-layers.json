@@ -1,0 +1,72 @@
+{
+  "name": "PPPPI Sealed Layers",
+  "description": "Economic domain mapping with ritual-law statements for sector tickers",
+  "sectors": [
+    {
+      "id": "ENERGY",
+      "name": "Energy",
+      "ritualLaw": "All energy converted into coin",
+      "ticker": "ENRG",
+      "baseValue": 100,
+      "volatility": 0.15,
+      "description": "Power generation, distribution, and energy conversion systems"
+    },
+    {
+      "id": "TRANSPORT",
+      "name": "Transport",
+      "ritualLaw": "Movement is commerce",
+      "ticker": "TRNS",
+      "baseValue": 85,
+      "volatility": 0.12,
+      "description": "Transit systems, logistics, and mobility infrastructure"
+    },
+    {
+      "id": "MEDS",
+      "name": "Meds",
+      "ritualLaw": "Healing is wealth",
+      "ticker": "MEDS",
+      "baseValue": 120,
+      "volatility": 0.08,
+      "description": "Medical services, pharmaceutical resources, and health restoration"
+    },
+    {
+      "id": "WEAPONS",
+      "name": "Weapons",
+      "ritualLaw": "Force yields value",
+      "ticker": "WPNS",
+      "baseValue": 150,
+      "volatility": 0.25,
+      "description": "Armaments, defense systems, and combat enhancement"
+    },
+    {
+      "id": "PUZZLE",
+      "name": "Puzzle",
+      "ritualLaw": "Solutions unlock capital",
+      "ticker": "PZLE",
+      "baseValue": 95,
+      "volatility": 0.18,
+      "description": "Strategic challenges, algorithmic solutions, and complexity navigation"
+    },
+    {
+      "id": "KNOWLEDGE",
+      "name": "Knowledge",
+      "ritualLaw": "Information is the prime currency",
+      "ticker": "KNWL",
+      "baseValue": 110,
+      "volatility": 0.1,
+      "description": "Data archives, wisdom repositories, and information networks"
+    }
+  ],
+  "layerStructure": {
+    "totalLayers": 6,
+    "interactionMatrix": {
+      "ENERGY-TRANSPORT": 1.2,
+      "ENERGY-WEAPONS": 1.5,
+      "MEDS-KNOWLEDGE": 1.3,
+      "WEAPONS-TRANSPORT": 1.1,
+      "PUZZLE-KNOWLEDGE": 1.4,
+      "ENERGY-MEDS": 0.9
+    },
+    "note": "Interaction matrix shows multiplier effects between sectors"
+  }
+}

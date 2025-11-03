@@ -1,0 +1,86 @@
+{
+  "name": "EVOL X/Y Tachometer",
+  "description": "Four axes sensor system with vowel weight modulation for player input and energy yield",
+  "axes": {
+    "X": {
+      "name": "Seal",
+      "description": "Containment and binding force",
+      "range": [0, 100],
+      "defaultValue": 50
+    },
+    "Y": {
+      "name": "Reveal",
+      "description": "Disclosure and manifestation power",
+      "range": [0, 100],
+      "defaultValue": 50
+    },
+    "Z": {
+      "name": "Depth",
+      "description": "Penetration and understanding level",
+      "range": [0, 100],
+      "defaultValue": 50
+    },
+    "W": {
+      "name": "Will",
+      "description": "Intentional force and determination",
+      "range": [0, 100],
+      "defaultValue": 50
+    }
+  },
+  "vowelWeights": {
+    "A": {
+      "weight": 1.0,
+      "affinity": "Energy",
+      "resonance": "Open manifestation"
+    },
+    "E": {
+      "weight": 0.9,
+      "affinity": "Knowledge",
+      "resonance": "Directed focus"
+    },
+    "I": {
+      "weight": 0.85,
+      "affinity": "Puzzle",
+      "resonance": "Precise alignment"
+    },
+    "O": {
+      "weight": 1.1,
+      "affinity": "Meds",
+      "resonance": "Circular flow"
+    },
+    "U": {
+      "weight": 0.95,
+      "affinity": "Transport",
+      "resonance": "Deep movement"
+    },
+    "Y": {
+      "weight": 1.05,
+      "affinity": "Weapons",
+      "resonance": "Dynamic choice"
+    }
+  },
+  "rpmCalculation": {
+    "formula": "(X + Y + Z + W) / 4",
+    "phiBoostFormula": "rpm * (1 + (vowelSum / 6) * 0.618)",
+    "note": "φ-Boost uses golden ratio (0.618) multiplier"
+  },
+  "sensorLogic": {
+    "inputSources": [
+      "player_action",
+      "ritual_completion",
+      "combat_result",
+      "trade_transaction"
+    ],
+    "yieldMapping": {
+      "high_rpm": "increased_energy_yield",
+      "balanced_axes": "bonus_multiplier",
+      "vowel_resonance": "sector_affinity_boost"
+    }
+  },
+  "multiRealmIntegration": {
+    "gladiatorSchool": "Combat actions modulate W (Will) axis",
+    "blueBots": "Repair rituals affect Z (Depth) axis",
+    "drSosa": "Healing interactions boost Y (Reveal) axis",
+    "note": "Each game branch becomes a transaction on Blue Lock Ledger"
+  }
+}
