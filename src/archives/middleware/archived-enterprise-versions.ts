@@ -103,7 +103,14 @@ export default async function archivedEnterpriseVersions(
 
   // Redirects for releases 3.0+
   if (deprecatedWithFunctionalRedirects.includes(requestedVersion)) {
-    const redirectTo = req.context ? getRedirect(req.path, req.context) : undefined
+    // Check for context early to avoid unnecessary remote fetches
+    if (!req.context) {
+      // Context should always be set by the context middleware, but if not,
+      // skip this redirect handling and let the next middleware handle it
+      return next()
+    }
+
+    const redirectTo = getRedirect(req.path, req.context)
     if (redirectTo) {
       if (redirectCode === 302) {
         languageCacheControl(res) // call first to get `vary`
@@ -121,7 +128,6 @@ export default async function archivedEnterpriseVersions(
       // to time out.
       timeout: { response: 1000 },
     })
-    if (!req.context) throw new Error('No context on request')
     const [language, withoutLanguage] = splitPathByLanguage(req.path, req.context.userLanguage)
     const newRedirectTo = redirectJson[withoutLanguage]
     if (newRedirectTo && newRedirectTo !== withoutLanguage) {
