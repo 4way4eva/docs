@@ -1151,1881 +1151,6 @@
       "category": "branch_protection_rule"
     }
   },
-  "bypass_request_push_ruleset": {
-    "cancelled": {
-      "descriptionHtml": "<p>A push ruleset bypass request was cancelled.</p>",
-      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
-      "bodyParameters": [
-        {
-          "type": "string",
-          "name": "action",
-          "in": "body",
-          "description": "",
-          "isRequired": true,
-          "enum": [
-            "cancelled"
-          ],
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "enterprise",
-          "in": "body",
-          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "installation",
-          "in": "body",
-          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "organization",
-          "in": "body",
-          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "repository",
-          "in": "body",
-          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "exemption_request",
-          "in": "body",
-          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption request.</p>"
-            },
-            {
-              "type": "integer or null",
-              "name": "number",
-              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "repository_id",
-              "description": "<p>The ID of the repository the exemption request is for.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "requester_id",
-              "description": "<p>The ID of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "requester_login",
-              "description": "<p>The login of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "request_type",
-              "description": "<p>The type of request.</p>",
-              "enum": [
-                "push_ruleset_bypass",
-                "secret_scanning",
-                "secret_scanning_closure",
-                "code_scanning_alert_dismissal"
-              ]
-            },
-            {
-              "type": "object",
-              "name": "exemption_request_data",
-              "description": "",
-              "childParamsGroups": [
-                {
-                  "type": "object",
-                  "name": "Push ruleset bypass exemption request data",
-                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "push_ruleset_bypass"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "integer",
-                          "name": "ruleset_id",
-                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "ruleset_name",
-                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "integer",
-                          "name": "total_violations",
-                          "description": "<p>The number of violations</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "rule_type",
-                          "description": "<p>The type of rule that was violated</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning push protection exemption request data",
-                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "array of objects",
-                          "name": "locations",
-                          "description": "<p>The location data of the secret that was detected</p>",
-                          "childParamsGroups": [
-                            {
-                              "type": "string",
-                              "name": "commit",
-                              "description": "<p>The commit SHA where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "branch",
-                              "description": "<p>The branch where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "path",
-                              "description": "<p>The path of the file where the secret was detected</p>"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning alert dismissal request data",
-                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning_closure"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "reason",
-                          "description": "<p>The reason for the dismissal request</p>",
-                          "enum": [
-                            "fixed_later",
-                            "false_positive",
-                            "tests",
-                            "revoked"
-                          ]
-                        },
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert that was detected</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Code scanning alert dismissal request data",
-                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "code_scanning_alert_dismissal"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert to be dismissed</p>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "oneOfObject": true
-            },
-            {
-              "type": "string",
-              "name": "resource_identifier",
-              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption request.</p>",
-              "enum": [
-                "pending",
-                "rejected",
-                "cancelled",
-                "completed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "requester_comment",
-              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
-            },
-            {
-              "type": "object or null",
-              "name": "metadata",
-              "description": "<p>Metadata about the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "expires_at",
-              "description": "<p>The date and time the exemption request will expire.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            },
-            {
-              "type": "array of objects or null",
-              "name": "responses",
-              "description": "<p>The responses to the exemption request.</p>",
-              "childParamsGroups": [
-                {
-                  "type": "integer",
-                  "name": "id",
-                  "description": "<p>The ID of the exemption response.</p>"
-                },
-                {
-                  "type": "integer",
-                  "name": "reviewer_id",
-                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "reviewer_login",
-                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "status",
-                  "description": "<p>The status of the exemption response.</p>",
-                  "enum": [
-                    "approved",
-                    "rejected",
-                    "dismissed"
-                  ]
-                },
-                {
-                  "type": "string or null",
-                  "name": "reviewer_comment",
-                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "created_at",
-                  "description": "<p>The date and time the exemption request was created.</p>"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "name": "html_url",
-              "description": "<p>The URL to view the exemption request in a browser.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "sender",
-          "in": "body",
-          "description": "<p>A GitHub user.</p>",
-          "isRequired": true,
-          "childParamsGroups": []
-        }
-      ],
-      "availability": [
-        "repository",
-        "organization",
-        "app"
-      ],
-      "action": "cancelled",
-      "category": "bypass_request_push_ruleset"
-    },
-    "completed": {
-      "descriptionHtml": "<p>A push ruleset bypass request was completed.</p>",
-      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
-      "bodyParameters": [
-        {
-          "type": "string",
-          "name": "action",
-          "in": "body",
-          "description": "",
-          "isRequired": true,
-          "enum": [
-            "completed"
-          ],
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "enterprise",
-          "in": "body",
-          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "installation",
-          "in": "body",
-          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "organization",
-          "in": "body",
-          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "repository",
-          "in": "body",
-          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "exemption_request",
-          "in": "body",
-          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption request.</p>"
-            },
-            {
-              "type": "integer or null",
-              "name": "number",
-              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "repository_id",
-              "description": "<p>The ID of the repository the exemption request is for.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "requester_id",
-              "description": "<p>The ID of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "requester_login",
-              "description": "<p>The login of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "request_type",
-              "description": "<p>The type of request.</p>",
-              "enum": [
-                "push_ruleset_bypass",
-                "secret_scanning",
-                "secret_scanning_closure",
-                "code_scanning_alert_dismissal"
-              ]
-            },
-            {
-              "type": "object",
-              "name": "exemption_request_data",
-              "description": "",
-              "childParamsGroups": [
-                {
-                  "type": "object",
-                  "name": "Push ruleset bypass exemption request data",
-                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "push_ruleset_bypass"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "integer",
-                          "name": "ruleset_id",
-                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "ruleset_name",
-                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "integer",
-                          "name": "total_violations",
-                          "description": "<p>The number of violations</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "rule_type",
-                          "description": "<p>The type of rule that was violated</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning push protection exemption request data",
-                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "array of objects",
-                          "name": "locations",
-                          "description": "<p>The location data of the secret that was detected</p>",
-                          "childParamsGroups": [
-                            {
-                              "type": "string",
-                              "name": "commit",
-                              "description": "<p>The commit SHA where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "branch",
-                              "description": "<p>The branch where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "path",
-                              "description": "<p>The path of the file where the secret was detected</p>"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning alert dismissal request data",
-                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning_closure"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "reason",
-                          "description": "<p>The reason for the dismissal request</p>",
-                          "enum": [
-                            "fixed_later",
-                            "false_positive",
-                            "tests",
-                            "revoked"
-                          ]
-                        },
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert that was detected</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Code scanning alert dismissal request data",
-                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "code_scanning_alert_dismissal"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert to be dismissed</p>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "oneOfObject": true
-            },
-            {
-              "type": "string",
-              "name": "resource_identifier",
-              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption request.</p>",
-              "enum": [
-                "pending",
-                "rejected",
-                "cancelled",
-                "completed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "requester_comment",
-              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
-            },
-            {
-              "type": "object or null",
-              "name": "metadata",
-              "description": "<p>Metadata about the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "expires_at",
-              "description": "<p>The date and time the exemption request will expire.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            },
-            {
-              "type": "array of objects or null",
-              "name": "responses",
-              "description": "<p>The responses to the exemption request.</p>",
-              "childParamsGroups": [
-                {
-                  "type": "integer",
-                  "name": "id",
-                  "description": "<p>The ID of the exemption response.</p>"
-                },
-                {
-                  "type": "integer",
-                  "name": "reviewer_id",
-                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "reviewer_login",
-                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "status",
-                  "description": "<p>The status of the exemption response.</p>",
-                  "enum": [
-                    "approved",
-                    "rejected",
-                    "dismissed"
-                  ]
-                },
-                {
-                  "type": "string or null",
-                  "name": "reviewer_comment",
-                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "created_at",
-                  "description": "<p>The date and time the exemption request was created.</p>"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "name": "html_url",
-              "description": "<p>The URL to view the exemption request in a browser.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "sender",
-          "in": "body",
-          "description": "<p>A GitHub user.</p>",
-          "isRequired": true,
-          "childParamsGroups": []
-        }
-      ],
-      "availability": [
-        "repository",
-        "organization",
-        "app"
-      ],
-      "action": "completed",
-      "category": "bypass_request_push_ruleset"
-    },
-    "created": {
-      "descriptionHtml": "<p>A push ruleset bypass request was created.</p>",
-      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
-      "bodyParameters": [
-        {
-          "type": "string",
-          "name": "action",
-          "in": "body",
-          "description": "",
-          "isRequired": true,
-          "enum": [
-            "created"
-          ],
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "enterprise",
-          "in": "body",
-          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "installation",
-          "in": "body",
-          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "organization",
-          "in": "body",
-          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "repository",
-          "in": "body",
-          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "exemption_request",
-          "in": "body",
-          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption request.</p>"
-            },
-            {
-              "type": "integer or null",
-              "name": "number",
-              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "repository_id",
-              "description": "<p>The ID of the repository the exemption request is for.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "requester_id",
-              "description": "<p>The ID of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "requester_login",
-              "description": "<p>The login of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "request_type",
-              "description": "<p>The type of request.</p>",
-              "enum": [
-                "push_ruleset_bypass",
-                "secret_scanning",
-                "secret_scanning_closure",
-                "code_scanning_alert_dismissal"
-              ]
-            },
-            {
-              "type": "object",
-              "name": "exemption_request_data",
-              "description": "",
-              "childParamsGroups": [
-                {
-                  "type": "object",
-                  "name": "Push ruleset bypass exemption request data",
-                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "push_ruleset_bypass"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "integer",
-                          "name": "ruleset_id",
-                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "ruleset_name",
-                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "integer",
-                          "name": "total_violations",
-                          "description": "<p>The number of violations</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "rule_type",
-                          "description": "<p>The type of rule that was violated</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning push protection exemption request data",
-                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "array of objects",
-                          "name": "locations",
-                          "description": "<p>The location data of the secret that was detected</p>",
-                          "childParamsGroups": [
-                            {
-                              "type": "string",
-                              "name": "commit",
-                              "description": "<p>The commit SHA where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "branch",
-                              "description": "<p>The branch where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "path",
-                              "description": "<p>The path of the file where the secret was detected</p>"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning alert dismissal request data",
-                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning_closure"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "reason",
-                          "description": "<p>The reason for the dismissal request</p>",
-                          "enum": [
-                            "fixed_later",
-                            "false_positive",
-                            "tests",
-                            "revoked"
-                          ]
-                        },
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert that was detected</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Code scanning alert dismissal request data",
-                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "code_scanning_alert_dismissal"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert to be dismissed</p>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "oneOfObject": true
-            },
-            {
-              "type": "string",
-              "name": "resource_identifier",
-              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption request.</p>",
-              "enum": [
-                "pending",
-                "rejected",
-                "cancelled",
-                "completed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "requester_comment",
-              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
-            },
-            {
-              "type": "object or null",
-              "name": "metadata",
-              "description": "<p>Metadata about the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "expires_at",
-              "description": "<p>The date and time the exemption request will expire.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            },
-            {
-              "type": "array of objects or null",
-              "name": "responses",
-              "description": "<p>The responses to the exemption request.</p>",
-              "childParamsGroups": [
-                {
-                  "type": "integer",
-                  "name": "id",
-                  "description": "<p>The ID of the exemption response.</p>"
-                },
-                {
-                  "type": "integer",
-                  "name": "reviewer_id",
-                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "reviewer_login",
-                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "status",
-                  "description": "<p>The status of the exemption response.</p>",
-                  "enum": [
-                    "approved",
-                    "rejected",
-                    "dismissed"
-                  ]
-                },
-                {
-                  "type": "string or null",
-                  "name": "reviewer_comment",
-                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "created_at",
-                  "description": "<p>The date and time the exemption request was created.</p>"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "name": "html_url",
-              "description": "<p>The URL to view the exemption request in a browser.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "sender",
-          "in": "body",
-          "description": "<p>A GitHub user.</p>",
-          "isRequired": true,
-          "childParamsGroups": []
-        }
-      ],
-      "availability": [
-        "repository",
-        "organization",
-        "app"
-      ],
-      "action": "created",
-      "category": "bypass_request_push_ruleset"
-    },
-    "response_dismissed": {
-      "descriptionHtml": "<p>A push ruleset bypass response was dismissed.</p>",
-      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
-      "bodyParameters": [
-        {
-          "type": "string",
-          "name": "action",
-          "in": "body",
-          "description": "",
-          "isRequired": true,
-          "enum": [
-            "response_dismissed"
-          ],
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "enterprise",
-          "in": "body",
-          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "installation",
-          "in": "body",
-          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "organization",
-          "in": "body",
-          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "repository",
-          "in": "body",
-          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "exemption_request",
-          "in": "body",
-          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption request.</p>"
-            },
-            {
-              "type": "integer or null",
-              "name": "number",
-              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "repository_id",
-              "description": "<p>The ID of the repository the exemption request is for.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "requester_id",
-              "description": "<p>The ID of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "requester_login",
-              "description": "<p>The login of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "request_type",
-              "description": "<p>The type of request.</p>",
-              "enum": [
-                "push_ruleset_bypass",
-                "secret_scanning",
-                "secret_scanning_closure",
-                "code_scanning_alert_dismissal"
-              ]
-            },
-            {
-              "type": "object",
-              "name": "exemption_request_data",
-              "description": "",
-              "childParamsGroups": [
-                {
-                  "type": "object",
-                  "name": "Push ruleset bypass exemption request data",
-                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "push_ruleset_bypass"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "integer",
-                          "name": "ruleset_id",
-                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "ruleset_name",
-                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "integer",
-                          "name": "total_violations",
-                          "description": "<p>The number of violations</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "rule_type",
-                          "description": "<p>The type of rule that was violated</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning push protection exemption request data",
-                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "array of objects",
-                          "name": "locations",
-                          "description": "<p>The location data of the secret that was detected</p>",
-                          "childParamsGroups": [
-                            {
-                              "type": "string",
-                              "name": "commit",
-                              "description": "<p>The commit SHA where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "branch",
-                              "description": "<p>The branch where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "path",
-                              "description": "<p>The path of the file where the secret was detected</p>"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning alert dismissal request data",
-                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning_closure"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "reason",
-                          "description": "<p>The reason for the dismissal request</p>",
-                          "enum": [
-                            "fixed_later",
-                            "false_positive",
-                            "tests",
-                            "revoked"
-                          ]
-                        },
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert that was detected</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Code scanning alert dismissal request data",
-                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "code_scanning_alert_dismissal"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert to be dismissed</p>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "oneOfObject": true
-            },
-            {
-              "type": "string",
-              "name": "resource_identifier",
-              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption request.</p>",
-              "enum": [
-                "pending",
-                "rejected",
-                "cancelled",
-                "completed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "requester_comment",
-              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
-            },
-            {
-              "type": "object or null",
-              "name": "metadata",
-              "description": "<p>Metadata about the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "expires_at",
-              "description": "<p>The date and time the exemption request will expire.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            },
-            {
-              "type": "array of objects or null",
-              "name": "responses",
-              "description": "<p>The responses to the exemption request.</p>",
-              "childParamsGroups": [
-                {
-                  "type": "integer",
-                  "name": "id",
-                  "description": "<p>The ID of the exemption response.</p>"
-                },
-                {
-                  "type": "integer",
-                  "name": "reviewer_id",
-                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "reviewer_login",
-                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "status",
-                  "description": "<p>The status of the exemption response.</p>",
-                  "enum": [
-                    "approved",
-                    "rejected",
-                    "dismissed"
-                  ]
-                },
-                {
-                  "type": "string or null",
-                  "name": "reviewer_comment",
-                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "created_at",
-                  "description": "<p>The date and time the exemption request was created.</p>"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "name": "html_url",
-              "description": "<p>The URL to view the exemption request in a browser.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "exemption_response",
-          "in": "body",
-          "description": "<p>A response to an exemption request by a delegated bypasser.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption response.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "reviewer_id",
-              "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "reviewer_login",
-              "description": "<p>The login of the user who reviewed the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption response.</p>",
-              "enum": [
-                "approved",
-                "rejected",
-                "dismissed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "reviewer_comment",
-              "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "sender",
-          "in": "body",
-          "description": "<p>A GitHub user.</p>",
-          "isRequired": true,
-          "childParamsGroups": []
-        }
-      ],
-      "availability": [
-        "repository",
-        "organization",
-        "app"
-      ],
-      "action": "response_dismissed",
-      "category": "bypass_request_push_ruleset"
-    },
-    "response_submitted": {
-      "descriptionHtml": "<p>A response either approving or rejecting the push ruleset bypass request was submitted.</p>",
-      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
-      "bodyParameters": [
-        {
-          "type": "string",
-          "name": "action",
-          "in": "body",
-          "description": "",
-          "isRequired": true,
-          "enum": [
-            "response_submitted"
-          ],
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "enterprise",
-          "in": "body",
-          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "installation",
-          "in": "body",
-          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "organization",
-          "in": "body",
-          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "repository",
-          "in": "body",
-          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
-          "childParamsGroups": []
-        },
-        {
-          "type": "object",
-          "name": "exemption_request",
-          "in": "body",
-          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption request.</p>"
-            },
-            {
-              "type": "integer or null",
-              "name": "number",
-              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "repository_id",
-              "description": "<p>The ID of the repository the exemption request is for.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "requester_id",
-              "description": "<p>The ID of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "requester_login",
-              "description": "<p>The login of the user who requested the exemption.</p>"
-            },
-            {
-              "type": "string",
-              "name": "request_type",
-              "description": "<p>The type of request.</p>",
-              "enum": [
-                "push_ruleset_bypass",
-                "secret_scanning",
-                "secret_scanning_closure",
-                "code_scanning_alert_dismissal"
-              ]
-            },
-            {
-              "type": "object",
-              "name": "exemption_request_data",
-              "description": "",
-              "childParamsGroups": [
-                {
-                  "type": "object",
-                  "name": "Push ruleset bypass exemption request data",
-                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "push_ruleset_bypass"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "integer",
-                          "name": "ruleset_id",
-                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "ruleset_name",
-                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
-                        },
-                        {
-                          "type": "integer",
-                          "name": "total_violations",
-                          "description": "<p>The number of violations</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "rule_type",
-                          "description": "<p>The type of rule that was violated</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning push protection exemption request data",
-                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "array of objects",
-                          "name": "locations",
-                          "description": "<p>The location data of the secret that was detected</p>",
-                          "childParamsGroups": [
-                            {
-                              "type": "string",
-                              "name": "commit",
-                              "description": "<p>The commit SHA where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "branch",
-                              "description": "<p>The branch where the secret was detected</p>"
-                            },
-                            {
-                              "type": "string",
-                              "name": "path",
-                              "description": "<p>The path of the file where the secret was detected</p>"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Secret scanning alert dismissal request data",
-                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "secret_scanning_closure"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "reason",
-                          "description": "<p>The reason for the dismissal request</p>",
-                          "enum": [
-                            "fixed_later",
-                            "false_positive",
-                            "tests",
-                            "revoked"
-                          ]
-                        },
-                        {
-                          "type": "string",
-                          "name": "secret_type",
-                          "description": "<p>The type of secret that was detected</p>"
-                        },
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert that was detected</p>"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "object",
-                  "name": "Code scanning alert dismissal request data",
-                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
-                  "childParamsGroups": [
-                    {
-                      "type": "string",
-                      "name": "type",
-                      "description": "<p>The type of request</p>",
-                      "enum": [
-                        "code_scanning_alert_dismissal"
-                      ]
-                    },
-                    {
-                      "type": "array of objects",
-                      "name": "data",
-                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
-                      "childParamsGroups": [
-                        {
-                          "type": "string",
-                          "name": "alert_number",
-                          "description": "<p>The number of the alert to be dismissed</p>"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "oneOfObject": true
-            },
-            {
-              "type": "string",
-              "name": "resource_identifier",
-              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption request.</p>",
-              "enum": [
-                "pending",
-                "rejected",
-                "cancelled",
-                "completed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "requester_comment",
-              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
-            },
-            {
-              "type": "object or null",
-              "name": "metadata",
-              "description": "<p>Metadata about the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "expires_at",
-              "description": "<p>The date and time the exemption request will expire.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            },
-            {
-              "type": "array of objects or null",
-              "name": "responses",
-              "description": "<p>The responses to the exemption request.</p>",
-              "childParamsGroups": [
-                {
-                  "type": "integer",
-                  "name": "id",
-                  "description": "<p>The ID of the exemption response.</p>"
-                },
-                {
-                  "type": "integer",
-                  "name": "reviewer_id",
-                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "reviewer_login",
-                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "status",
-                  "description": "<p>The status of the exemption response.</p>",
-                  "enum": [
-                    "approved",
-                    "rejected",
-                    "dismissed"
-                  ]
-                },
-                {
-                  "type": "string or null",
-                  "name": "reviewer_comment",
-                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-                },
-                {
-                  "type": "string",
-                  "name": "created_at",
-                  "description": "<p>The date and time the exemption request was created.</p>"
-                }
-              ]
-            },
-            {
-              "type": "string",
-              "name": "html_url",
-              "description": "<p>The URL to view the exemption request in a browser.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "exemption_response",
-          "in": "body",
-          "description": "<p>A response to an exemption request by a delegated bypasser.</p>",
-          "isRequired": true,
-          "childParamsGroups": [
-            {
-              "type": "integer",
-              "name": "id",
-              "description": "<p>The ID of the exemption response.</p>"
-            },
-            {
-              "type": "integer",
-              "name": "reviewer_id",
-              "description": "<p>The ID of the user who reviewed the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "reviewer_login",
-              "description": "<p>The login of the user who reviewed the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "status",
-              "description": "<p>The status of the exemption response.</p>",
-              "enum": [
-                "approved",
-                "rejected",
-                "dismissed"
-              ]
-            },
-            {
-              "type": "string or null",
-              "name": "reviewer_comment",
-              "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
-            },
-            {
-              "type": "string",
-              "name": "created_at",
-              "description": "<p>The date and time the exemption request was created.</p>"
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "name": "sender",
-          "in": "body",
-          "description": "<p>A GitHub user.</p>",
-          "isRequired": true,
-          "childParamsGroups": []
-        }
-      ],
-      "availability": [
-        "repository",
-        "organization",
-        "app"
-      ],
-      "action": "response_submitted",
-      "category": "bypass_request_push_ruleset"
-    }
-  },
   "bypass_request_secret_scanning": {
     "cancelled": {
       "descriptionHtml": "<p>A secret scanning push protection bypass request was cancelled.</p>",
@@ -14480,6 +12605,15 @@
                     },
                     {
                       "type": "string",
+                      "name": "attestations",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
                       "name": "checks",
                       "description": "",
                       "enum": [
@@ -14570,7 +12704,25 @@
                     },
                     {
                       "type": "string",
+                      "name": "merge_queues",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
                       "name": "metadata",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "name": "models",
                       "description": "",
                       "enum": [
                         "read",
@@ -15386,6 +13538,15 @@
                     },
                     {
                       "type": "string",
+                      "name": "attestations",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
                       "name": "checks",
                       "description": "",
                       "enum": [
@@ -15476,7 +13637,25 @@
                     },
                     {
                       "type": "string",
+                      "name": "merge_queues",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
                       "name": "metadata",
+                      "description": "",
+                      "enum": [
+                        "read",
+                        "write"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "name": "models",
                       "description": "",
                       "enum": [
                         "read",
@@ -52984,6 +51163,1881 @@
       ],
       "action": "anonymous_access_enabled",
       "category": "enterprise"
+    }
+  },
+  "exemption_request_push_ruleset": {
+    "cancelled": {
+      "descriptionHtml": "<p>A push ruleset bypass request was cancelled.</p>",
+      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
+      "bodyParameters": [
+        {
+          "type": "string",
+          "name": "action",
+          "in": "body",
+          "description": "",
+          "isRequired": true,
+          "enum": [
+            "cancelled"
+          ],
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "enterprise",
+          "in": "body",
+          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "installation",
+          "in": "body",
+          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "organization",
+          "in": "body",
+          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "repository",
+          "in": "body",
+          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "exemption_request",
+          "in": "body",
+          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption request.</p>"
+            },
+            {
+              "type": "integer or null",
+              "name": "number",
+              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "repository_id",
+              "description": "<p>The ID of the repository the exemption request is for.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "requester_id",
+              "description": "<p>The ID of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "requester_login",
+              "description": "<p>The login of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "request_type",
+              "description": "<p>The type of request.</p>",
+              "enum": [
+                "push_ruleset_bypass",
+                "secret_scanning",
+                "secret_scanning_closure",
+                "code_scanning_alert_dismissal"
+              ]
+            },
+            {
+              "type": "object",
+              "name": "exemption_request_data",
+              "description": "",
+              "childParamsGroups": [
+                {
+                  "type": "object",
+                  "name": "Push ruleset bypass exemption request data",
+                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "push_ruleset_bypass"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "integer",
+                          "name": "ruleset_id",
+                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "ruleset_name",
+                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "integer",
+                          "name": "total_violations",
+                          "description": "<p>The number of violations</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "rule_type",
+                          "description": "<p>The type of rule that was violated</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning push protection exemption request data",
+                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "locations",
+                          "description": "<p>The location data of the secret that was detected</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "string",
+                              "name": "commit",
+                              "description": "<p>The commit SHA where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "branch",
+                              "description": "<p>The branch where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "path",
+                              "description": "<p>The path of the file where the secret was detected</p>"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning alert dismissal request data",
+                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning_closure"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "reason",
+                          "description": "<p>The reason for the dismissal request</p>",
+                          "enum": [
+                            "fixed_later",
+                            "false_positive",
+                            "tests",
+                            "revoked"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert that was detected</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Code scanning alert dismissal request data",
+                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "code_scanning_alert_dismissal"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert to be dismissed</p>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "oneOfObject": true
+            },
+            {
+              "type": "string",
+              "name": "resource_identifier",
+              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption request.</p>",
+              "enum": [
+                "pending",
+                "rejected",
+                "cancelled",
+                "completed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "requester_comment",
+              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
+            },
+            {
+              "type": "object or null",
+              "name": "metadata",
+              "description": "<p>Metadata about the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "expires_at",
+              "description": "<p>The date and time the exemption request will expire.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            },
+            {
+              "type": "array of objects or null",
+              "name": "responses",
+              "description": "<p>The responses to the exemption request.</p>",
+              "childParamsGroups": [
+                {
+                  "type": "integer",
+                  "name": "id",
+                  "description": "<p>The ID of the exemption response.</p>"
+                },
+                {
+                  "type": "integer",
+                  "name": "reviewer_id",
+                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "reviewer_login",
+                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "status",
+                  "description": "<p>The status of the exemption response.</p>",
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "dismissed"
+                  ]
+                },
+                {
+                  "type": "string or null",
+                  "name": "reviewer_comment",
+                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "created_at",
+                  "description": "<p>The date and time the exemption request was created.</p>"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "name": "html_url",
+              "description": "<p>The URL to view the exemption request in a browser.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "sender",
+          "in": "body",
+          "description": "<p>A GitHub user.</p>",
+          "isRequired": true,
+          "childParamsGroups": []
+        }
+      ],
+      "availability": [
+        "repository",
+        "organization",
+        "app"
+      ],
+      "action": "cancelled",
+      "category": "exemption_request_push_ruleset"
+    },
+    "completed": {
+      "descriptionHtml": "<p>A push ruleset bypass request was completed.</p>",
+      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
+      "bodyParameters": [
+        {
+          "type": "string",
+          "name": "action",
+          "in": "body",
+          "description": "",
+          "isRequired": true,
+          "enum": [
+            "completed"
+          ],
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "enterprise",
+          "in": "body",
+          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "installation",
+          "in": "body",
+          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "organization",
+          "in": "body",
+          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "repository",
+          "in": "body",
+          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "exemption_request",
+          "in": "body",
+          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption request.</p>"
+            },
+            {
+              "type": "integer or null",
+              "name": "number",
+              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "repository_id",
+              "description": "<p>The ID of the repository the exemption request is for.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "requester_id",
+              "description": "<p>The ID of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "requester_login",
+              "description": "<p>The login of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "request_type",
+              "description": "<p>The type of request.</p>",
+              "enum": [
+                "push_ruleset_bypass",
+                "secret_scanning",
+                "secret_scanning_closure",
+                "code_scanning_alert_dismissal"
+              ]
+            },
+            {
+              "type": "object",
+              "name": "exemption_request_data",
+              "description": "",
+              "childParamsGroups": [
+                {
+                  "type": "object",
+                  "name": "Push ruleset bypass exemption request data",
+                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "push_ruleset_bypass"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "integer",
+                          "name": "ruleset_id",
+                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "ruleset_name",
+                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "integer",
+                          "name": "total_violations",
+                          "description": "<p>The number of violations</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "rule_type",
+                          "description": "<p>The type of rule that was violated</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning push protection exemption request data",
+                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "locations",
+                          "description": "<p>The location data of the secret that was detected</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "string",
+                              "name": "commit",
+                              "description": "<p>The commit SHA where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "branch",
+                              "description": "<p>The branch where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "path",
+                              "description": "<p>The path of the file where the secret was detected</p>"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning alert dismissal request data",
+                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning_closure"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "reason",
+                          "description": "<p>The reason for the dismissal request</p>",
+                          "enum": [
+                            "fixed_later",
+                            "false_positive",
+                            "tests",
+                            "revoked"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert that was detected</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Code scanning alert dismissal request data",
+                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "code_scanning_alert_dismissal"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert to be dismissed</p>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "oneOfObject": true
+            },
+            {
+              "type": "string",
+              "name": "resource_identifier",
+              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption request.</p>",
+              "enum": [
+                "pending",
+                "rejected",
+                "cancelled",
+                "completed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "requester_comment",
+              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
+            },
+            {
+              "type": "object or null",
+              "name": "metadata",
+              "description": "<p>Metadata about the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "expires_at",
+              "description": "<p>The date and time the exemption request will expire.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            },
+            {
+              "type": "array of objects or null",
+              "name": "responses",
+              "description": "<p>The responses to the exemption request.</p>",
+              "childParamsGroups": [
+                {
+                  "type": "integer",
+                  "name": "id",
+                  "description": "<p>The ID of the exemption response.</p>"
+                },
+                {
+                  "type": "integer",
+                  "name": "reviewer_id",
+                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "reviewer_login",
+                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "status",
+                  "description": "<p>The status of the exemption response.</p>",
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "dismissed"
+                  ]
+                },
+                {
+                  "type": "string or null",
+                  "name": "reviewer_comment",
+                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "created_at",
+                  "description": "<p>The date and time the exemption request was created.</p>"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "name": "html_url",
+              "description": "<p>The URL to view the exemption request in a browser.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "sender",
+          "in": "body",
+          "description": "<p>A GitHub user.</p>",
+          "isRequired": true,
+          "childParamsGroups": []
+        }
+      ],
+      "availability": [
+        "repository",
+        "organization",
+        "app"
+      ],
+      "action": "completed",
+      "category": "exemption_request_push_ruleset"
+    },
+    "created": {
+      "descriptionHtml": "<p>A push ruleset bypass request was created.</p>",
+      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
+      "bodyParameters": [
+        {
+          "type": "string",
+          "name": "action",
+          "in": "body",
+          "description": "",
+          "isRequired": true,
+          "enum": [
+            "created"
+          ],
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "enterprise",
+          "in": "body",
+          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "installation",
+          "in": "body",
+          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "organization",
+          "in": "body",
+          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "repository",
+          "in": "body",
+          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "exemption_request",
+          "in": "body",
+          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption request.</p>"
+            },
+            {
+              "type": "integer or null",
+              "name": "number",
+              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "repository_id",
+              "description": "<p>The ID of the repository the exemption request is for.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "requester_id",
+              "description": "<p>The ID of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "requester_login",
+              "description": "<p>The login of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "request_type",
+              "description": "<p>The type of request.</p>",
+              "enum": [
+                "push_ruleset_bypass",
+                "secret_scanning",
+                "secret_scanning_closure",
+                "code_scanning_alert_dismissal"
+              ]
+            },
+            {
+              "type": "object",
+              "name": "exemption_request_data",
+              "description": "",
+              "childParamsGroups": [
+                {
+                  "type": "object",
+                  "name": "Push ruleset bypass exemption request data",
+                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "push_ruleset_bypass"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "integer",
+                          "name": "ruleset_id",
+                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "ruleset_name",
+                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "integer",
+                          "name": "total_violations",
+                          "description": "<p>The number of violations</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "rule_type",
+                          "description": "<p>The type of rule that was violated</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning push protection exemption request data",
+                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "locations",
+                          "description": "<p>The location data of the secret that was detected</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "string",
+                              "name": "commit",
+                              "description": "<p>The commit SHA where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "branch",
+                              "description": "<p>The branch where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "path",
+                              "description": "<p>The path of the file where the secret was detected</p>"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning alert dismissal request data",
+                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning_closure"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "reason",
+                          "description": "<p>The reason for the dismissal request</p>",
+                          "enum": [
+                            "fixed_later",
+                            "false_positive",
+                            "tests",
+                            "revoked"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert that was detected</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Code scanning alert dismissal request data",
+                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "code_scanning_alert_dismissal"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert to be dismissed</p>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "oneOfObject": true
+            },
+            {
+              "type": "string",
+              "name": "resource_identifier",
+              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption request.</p>",
+              "enum": [
+                "pending",
+                "rejected",
+                "cancelled",
+                "completed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "requester_comment",
+              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
+            },
+            {
+              "type": "object or null",
+              "name": "metadata",
+              "description": "<p>Metadata about the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "expires_at",
+              "description": "<p>The date and time the exemption request will expire.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            },
+            {
+              "type": "array of objects or null",
+              "name": "responses",
+              "description": "<p>The responses to the exemption request.</p>",
+              "childParamsGroups": [
+                {
+                  "type": "integer",
+                  "name": "id",
+                  "description": "<p>The ID of the exemption response.</p>"
+                },
+                {
+                  "type": "integer",
+                  "name": "reviewer_id",
+                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "reviewer_login",
+                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "status",
+                  "description": "<p>The status of the exemption response.</p>",
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "dismissed"
+                  ]
+                },
+                {
+                  "type": "string or null",
+                  "name": "reviewer_comment",
+                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "created_at",
+                  "description": "<p>The date and time the exemption request was created.</p>"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "name": "html_url",
+              "description": "<p>The URL to view the exemption request in a browser.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "sender",
+          "in": "body",
+          "description": "<p>A GitHub user.</p>",
+          "isRequired": true,
+          "childParamsGroups": []
+        }
+      ],
+      "availability": [
+        "repository",
+        "organization",
+        "app"
+      ],
+      "action": "created",
+      "category": "exemption_request_push_ruleset"
+    },
+    "response_dismissed": {
+      "descriptionHtml": "<p>A push ruleset bypass response was dismissed.</p>",
+      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
+      "bodyParameters": [
+        {
+          "type": "string",
+          "name": "action",
+          "in": "body",
+          "description": "",
+          "isRequired": true,
+          "enum": [
+            "response_dismissed"
+          ],
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "enterprise",
+          "in": "body",
+          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "installation",
+          "in": "body",
+          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "organization",
+          "in": "body",
+          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "repository",
+          "in": "body",
+          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "exemption_request",
+          "in": "body",
+          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption request.</p>"
+            },
+            {
+              "type": "integer or null",
+              "name": "number",
+              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "repository_id",
+              "description": "<p>The ID of the repository the exemption request is for.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "requester_id",
+              "description": "<p>The ID of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "requester_login",
+              "description": "<p>The login of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "request_type",
+              "description": "<p>The type of request.</p>",
+              "enum": [
+                "push_ruleset_bypass",
+                "secret_scanning",
+                "secret_scanning_closure",
+                "code_scanning_alert_dismissal"
+              ]
+            },
+            {
+              "type": "object",
+              "name": "exemption_request_data",
+              "description": "",
+              "childParamsGroups": [
+                {
+                  "type": "object",
+                  "name": "Push ruleset bypass exemption request data",
+                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "push_ruleset_bypass"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "integer",
+                          "name": "ruleset_id",
+                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "ruleset_name",
+                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "integer",
+                          "name": "total_violations",
+                          "description": "<p>The number of violations</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "rule_type",
+                          "description": "<p>The type of rule that was violated</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning push protection exemption request data",
+                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "locations",
+                          "description": "<p>The location data of the secret that was detected</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "string",
+                              "name": "commit",
+                              "description": "<p>The commit SHA where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "branch",
+                              "description": "<p>The branch where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "path",
+                              "description": "<p>The path of the file where the secret was detected</p>"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning alert dismissal request data",
+                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning_closure"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "reason",
+                          "description": "<p>The reason for the dismissal request</p>",
+                          "enum": [
+                            "fixed_later",
+                            "false_positive",
+                            "tests",
+                            "revoked"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert that was detected</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Code scanning alert dismissal request data",
+                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "code_scanning_alert_dismissal"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert to be dismissed</p>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "oneOfObject": true
+            },
+            {
+              "type": "string",
+              "name": "resource_identifier",
+              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption request.</p>",
+              "enum": [
+                "pending",
+                "rejected",
+                "cancelled",
+                "completed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "requester_comment",
+              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
+            },
+            {
+              "type": "object or null",
+              "name": "metadata",
+              "description": "<p>Metadata about the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "expires_at",
+              "description": "<p>The date and time the exemption request will expire.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            },
+            {
+              "type": "array of objects or null",
+              "name": "responses",
+              "description": "<p>The responses to the exemption request.</p>",
+              "childParamsGroups": [
+                {
+                  "type": "integer",
+                  "name": "id",
+                  "description": "<p>The ID of the exemption response.</p>"
+                },
+                {
+                  "type": "integer",
+                  "name": "reviewer_id",
+                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "reviewer_login",
+                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "status",
+                  "description": "<p>The status of the exemption response.</p>",
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "dismissed"
+                  ]
+                },
+                {
+                  "type": "string or null",
+                  "name": "reviewer_comment",
+                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "created_at",
+                  "description": "<p>The date and time the exemption request was created.</p>"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "name": "html_url",
+              "description": "<p>The URL to view the exemption request in a browser.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "exemption_response",
+          "in": "body",
+          "description": "<p>A response to an exemption request by a delegated bypasser.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption response.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "reviewer_id",
+              "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "reviewer_login",
+              "description": "<p>The login of the user who reviewed the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption response.</p>",
+              "enum": [
+                "approved",
+                "rejected",
+                "dismissed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "reviewer_comment",
+              "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "sender",
+          "in": "body",
+          "description": "<p>A GitHub user.</p>",
+          "isRequired": true,
+          "childParamsGroups": []
+        }
+      ],
+      "availability": [
+        "repository",
+        "organization",
+        "app"
+      ],
+      "action": "response_dismissed",
+      "category": "exemption_request_push_ruleset"
+    },
+    "response_submitted": {
+      "descriptionHtml": "<p>A response either approving or rejecting the push ruleset bypass request was submitted.</p>",
+      "summaryHtml": "<p>This event occurs when there is activity related to a user's request to bypass a set of push rules.</p>\n<p>For more information, see \"<a href=\"https://docs.github.com/enterprise-server@3.16/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository#managing-requests-to-bypass-push-rules\">Managing requests to bypass push rulesets</a>.\"</p>\n<p>To subscribe to this event, a GitHub App must have at least read-level access for the \"Administration\" repository permission.</p>",
+      "bodyParameters": [
+        {
+          "type": "string",
+          "name": "action",
+          "in": "body",
+          "description": "",
+          "isRequired": true,
+          "enum": [
+            "response_submitted"
+          ],
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "enterprise",
+          "in": "body",
+          "description": "<p>An enterprise on GitHub. Webhook payloads contain the <code>enterprise</code> property when the webhook is configured\non an enterprise account or an organization that's part of an enterprise account. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/admin/overview/about-enterprise-accounts\">About enterprise accounts</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "installation",
+          "in": "body",
+          "description": "<p>The GitHub App installation. Webhook payloads contain the <code>installation</code> property when the event is configured\nfor and sent to a GitHub App. For more information,\nsee \"<a href=\"https://docs.github.com/enterprise-server@3.16/apps/creating-github-apps/registering-a-github-app/using-webhooks-with-github-apps\">Using webhooks with GitHub Apps</a>.\"</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "organization",
+          "in": "body",
+          "description": "<p>A GitHub organization. Webhook payloads contain the <code>organization</code> property when the webhook is configured for an\norganization, or when the event occurs from activity in a repository owned by an organization.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "repository",
+          "in": "body",
+          "description": "<p>The repository on GitHub where the event occurred. Webhook payloads contain the <code>repository</code> property\nwhen the event occurs from activity in a repository.</p>",
+          "childParamsGroups": []
+        },
+        {
+          "type": "object",
+          "name": "exemption_request",
+          "in": "body",
+          "description": "<p>A request from a user to be exempted from a set of rules.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption request.</p>"
+            },
+            {
+              "type": "integer or null",
+              "name": "number",
+              "description": "<p>The number uniquely identifying the exemption request within it's repository.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "repository_id",
+              "description": "<p>The ID of the repository the exemption request is for.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "requester_id",
+              "description": "<p>The ID of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "requester_login",
+              "description": "<p>The login of the user who requested the exemption.</p>"
+            },
+            {
+              "type": "string",
+              "name": "request_type",
+              "description": "<p>The type of request.</p>",
+              "enum": [
+                "push_ruleset_bypass",
+                "secret_scanning",
+                "secret_scanning_closure",
+                "code_scanning_alert_dismissal"
+              ]
+            },
+            {
+              "type": "object",
+              "name": "exemption_request_data",
+              "description": "",
+              "childParamsGroups": [
+                {
+                  "type": "object",
+                  "name": "Push ruleset bypass exemption request data",
+                  "description": "<p>Push rules that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "push_ruleset_bypass"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the push rules that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "integer",
+                          "name": "ruleset_id",
+                          "description": "<p>The ID of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "ruleset_name",
+                          "description": "<p>The name of the ruleset for the rules that were violated</p>"
+                        },
+                        {
+                          "type": "integer",
+                          "name": "total_violations",
+                          "description": "<p>The number of violations</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "rule_type",
+                          "description": "<p>The type of rule that was violated</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning push protection exemption request data",
+                  "description": "<p>Secret scanning push protections that are being requested to be bypassed.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data pertaining to the secret scanning push protections that are being requested to be bypassed.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "locations",
+                          "description": "<p>The location data of the secret that was detected</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "string",
+                              "name": "commit",
+                              "description": "<p>The commit SHA where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "branch",
+                              "description": "<p>The branch where the secret was detected</p>"
+                            },
+                            {
+                              "type": "string",
+                              "name": "path",
+                              "description": "<p>The path of the file where the secret was detected</p>"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Secret scanning alert dismissal request data",
+                  "description": "<p>Secret scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "secret_scanning_closure"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the secret scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "reason",
+                          "description": "<p>The reason for the dismissal request</p>",
+                          "enum": [
+                            "fixed_later",
+                            "false_positive",
+                            "tests",
+                            "revoked"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "name": "secret_type",
+                          "description": "<p>The type of secret that was detected</p>"
+                        },
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert that was detected</p>"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "name": "Code scanning alert dismissal request data",
+                  "description": "<p>Code scanning alerts that have dismissal requests.</p>",
+                  "childParamsGroups": [
+                    {
+                      "type": "string",
+                      "name": "type",
+                      "description": "<p>The type of request</p>",
+                      "enum": [
+                        "code_scanning_alert_dismissal"
+                      ]
+                    },
+                    {
+                      "type": "array of objects",
+                      "name": "data",
+                      "description": "<p>The data related to the code scanning alerts that have dismissal requests.</p>",
+                      "childParamsGroups": [
+                        {
+                          "type": "string",
+                          "name": "alert_number",
+                          "description": "<p>The number of the alert to be dismissed</p>"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "oneOfObject": true
+            },
+            {
+              "type": "string",
+              "name": "resource_identifier",
+              "description": "<p>The unique identifier for the request type of the exemption request. For example, a commit SHA.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption request.</p>",
+              "enum": [
+                "pending",
+                "rejected",
+                "cancelled",
+                "completed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "requester_comment",
+              "description": "<p>The comment the requester provided when creating the exemption request.</p>"
+            },
+            {
+              "type": "object or null",
+              "name": "metadata",
+              "description": "<p>Metadata about the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "expires_at",
+              "description": "<p>The date and time the exemption request will expire.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            },
+            {
+              "type": "array of objects or null",
+              "name": "responses",
+              "description": "<p>The responses to the exemption request.</p>",
+              "childParamsGroups": [
+                {
+                  "type": "integer",
+                  "name": "id",
+                  "description": "<p>The ID of the exemption response.</p>"
+                },
+                {
+                  "type": "integer",
+                  "name": "reviewer_id",
+                  "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "reviewer_login",
+                  "description": "<p>The login of the user who reviewed the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "status",
+                  "description": "<p>The status of the exemption response.</p>",
+                  "enum": [
+                    "approved",
+                    "rejected",
+                    "dismissed"
+                  ]
+                },
+                {
+                  "type": "string or null",
+                  "name": "reviewer_comment",
+                  "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+                },
+                {
+                  "type": "string",
+                  "name": "created_at",
+                  "description": "<p>The date and time the exemption request was created.</p>"
+                }
+              ]
+            },
+            {
+              "type": "string",
+              "name": "html_url",
+              "description": "<p>The URL to view the exemption request in a browser.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "exemption_response",
+          "in": "body",
+          "description": "<p>A response to an exemption request by a delegated bypasser.</p>",
+          "isRequired": true,
+          "childParamsGroups": [
+            {
+              "type": "integer",
+              "name": "id",
+              "description": "<p>The ID of the exemption response.</p>"
+            },
+            {
+              "type": "integer",
+              "name": "reviewer_id",
+              "description": "<p>The ID of the user who reviewed the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "reviewer_login",
+              "description": "<p>The login of the user who reviewed the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "description": "<p>The status of the exemption response.</p>",
+              "enum": [
+                "approved",
+                "rejected",
+                "dismissed"
+              ]
+            },
+            {
+              "type": "string or null",
+              "name": "reviewer_comment",
+              "description": "<p>The comment the reviewer provided when responding to the exemption request.</p>"
+            },
+            {
+              "type": "string",
+              "name": "created_at",
+              "description": "<p>The date and time the exemption request was created.</p>"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "name": "sender",
+          "in": "body",
+          "description": "<p>A GitHub user.</p>",
+          "isRequired": true,
+          "childParamsGroups": []
+        }
+      ],
+      "availability": [
+        "repository",
+        "organization",
+        "app"
+      ],
+      "action": "response_submitted",
+      "category": "exemption_request_push_ruleset"
     }
   },
   "fork": {
@@ -204228,6 +204282,48 @@
                           "name": "required_review_thread_resolution",
                           "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                           "isRequired": true
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "required_reviewers",
+                          "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "array of strings",
+                              "name": "file_patterns",
+                              "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "integer",
+                              "name": "minimum_approvals",
+                              "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "object",
+                              "name": "reviewer",
+                              "description": "<p>A required reviewing team</p>",
+                              "isRequired": true,
+                              "childParamsGroups": [
+                                {
+                                  "type": "integer",
+                                  "name": "id",
+                                  "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "string",
+                                  "name": "type",
+                                  "description": "<p>The type of the reviewer</p>",
+                                  "isRequired": true,
+                                  "enum": [
+                                    "Team"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -205235,6 +205331,48 @@
                           "name": "required_review_thread_resolution",
                           "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                           "isRequired": true
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "required_reviewers",
+                          "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "array of strings",
+                              "name": "file_patterns",
+                              "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "integer",
+                              "name": "minimum_approvals",
+                              "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "object",
+                              "name": "reviewer",
+                              "description": "<p>A required reviewing team</p>",
+                              "isRequired": true,
+                              "childParamsGroups": [
+                                {
+                                  "type": "integer",
+                                  "name": "id",
+                                  "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "string",
+                                  "name": "type",
+                                  "description": "<p>The type of the reviewer</p>",
+                                  "isRequired": true,
+                                  "enum": [
+                                    "Team"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -206242,6 +206380,48 @@
                           "name": "required_review_thread_resolution",
                           "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                           "isRequired": true
+                        },
+                        {
+                          "type": "array of objects",
+                          "name": "required_reviewers",
+                          "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                          "childParamsGroups": [
+                            {
+                              "type": "array of strings",
+                              "name": "file_patterns",
+                              "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "integer",
+                              "name": "minimum_approvals",
+                              "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                              "isRequired": true
+                            },
+                            {
+                              "type": "object",
+                              "name": "reviewer",
+                              "description": "<p>A required reviewing team</p>",
+                              "isRequired": true,
+                              "childParamsGroups": [
+                                {
+                                  "type": "integer",
+                                  "name": "id",
+                                  "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "string",
+                                  "name": "type",
+                                  "description": "<p>The type of the reviewer</p>",
+                                  "isRequired": true,
+                                  "enum": [
+                                    "Team"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
                         }
                       ]
                     }
@@ -207223,6 +207403,48 @@
                               "name": "required_review_thread_resolution",
                               "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                               "isRequired": true
+                            },
+                            {
+                              "type": "array of objects",
+                              "name": "required_reviewers",
+                              "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                              "childParamsGroups": [
+                                {
+                                  "type": "array of strings",
+                                  "name": "file_patterns",
+                                  "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "integer",
+                                  "name": "minimum_approvals",
+                                  "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "object",
+                                  "name": "reviewer",
+                                  "description": "<p>A required reviewing team</p>",
+                                  "isRequired": true,
+                                  "childParamsGroups": [
+                                    {
+                                      "type": "integer",
+                                      "name": "id",
+                                      "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                      "isRequired": true
+                                    },
+                                    {
+                                      "type": "string",
+                                      "name": "type",
+                                      "description": "<p>The type of the reviewer</p>",
+                                      "isRequired": true,
+                                      "enum": [
+                                        "Team"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         }
@@ -208016,6 +208238,48 @@
                               "name": "required_review_thread_resolution",
                               "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                               "isRequired": true
+                            },
+                            {
+                              "type": "array of objects",
+                              "name": "required_reviewers",
+                              "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                              "childParamsGroups": [
+                                {
+                                  "type": "array of strings",
+                                  "name": "file_patterns",
+                                  "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "integer",
+                                  "name": "minimum_approvals",
+                                  "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                                  "isRequired": true
+                                },
+                                {
+                                  "type": "object",
+                                  "name": "reviewer",
+                                  "description": "<p>A required reviewing team</p>",
+                                  "isRequired": true,
+                                  "childParamsGroups": [
+                                    {
+                                      "type": "integer",
+                                      "name": "id",
+                                      "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                      "isRequired": true
+                                    },
+                                    {
+                                      "type": "string",
+                                      "name": "type",
+                                      "description": "<p>The type of the reviewer</p>",
+                                      "isRequired": true,
+                                      "enum": [
+                                        "Team"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           ]
                         }
@@ -208814,6 +209078,48 @@
                                   "name": "required_review_thread_resolution",
                                   "description": "<p>All conversations on code must be resolved before a pull request can be merged.</p>",
                                   "isRequired": true
+                                },
+                                {
+                                  "type": "array of objects",
+                                  "name": "required_reviewers",
+                                  "description": "<div class=\"ghd-alert ghd-alert-accent\" data-container=\"alert\"><p class=\"ghd-alert-title\"><svg version=\"1.1\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" class=\"octicon mr-2\" aria-hidden><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Note</p>\n<p>\n<code>required_reviewers</code> is in beta and subject to change.</p>\n</div>\n<p>A collection of reviewers and associated file patterns. Each reviewer has a list of file patterns which determine the files that reviewer is required to review.</p>",
+                                  "childParamsGroups": [
+                                    {
+                                      "type": "array of strings",
+                                      "name": "file_patterns",
+                                      "description": "<p>Array of file patterns. Pull requests which change matching files must be approved by the specified team. File patterns use fnmatch syntax.</p>",
+                                      "isRequired": true
+                                    },
+                                    {
+                                      "type": "integer",
+                                      "name": "minimum_approvals",
+                                      "description": "<p>Minimum number of approvals required from the specified team. If set to zero, the team will be added to the pull request but approval is optional.</p>",
+                                      "isRequired": true
+                                    },
+                                    {
+                                      "type": "object",
+                                      "name": "reviewer",
+                                      "description": "<p>A required reviewing team</p>",
+                                      "isRequired": true,
+                                      "childParamsGroups": [
+                                        {
+                                          "type": "integer",
+                                          "name": "id",
+                                          "description": "<p>ID of the reviewer which must review changes to matching files.</p>",
+                                          "isRequired": true
+                                        },
+                                        {
+                                          "type": "string",
+                                          "name": "type",
+                                          "description": "<p>The type of the reviewer</p>",
+                                          "isRequired": true,
+                                          "enum": [
+                                            "Team"
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
                               ]
                             }
